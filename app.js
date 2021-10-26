@@ -42,7 +42,7 @@ app.get("/actores", cors(corsValues), (req, res) => {
   });
 });
 
-/*app.get("/actor/:id", cors(corsValues), (req, res) => {
+app.get("/actor/:id", cors(corsValues), (req, res) => {
   const { id } = req.params;
   const consulta = `SELECT * FROM actores WHERE id=${id}`;
   connection.query(consulta, function (error, results) {
@@ -56,7 +56,7 @@ app.get("/actores", cors(corsValues), (req, res) => {
     }
   });
 });
-*/
+
 app.post("/actores", urlencodedParser, (req, res) => {
   console.log(req.body);
   const consulta = `INSERT INTO actores SET ?`;
@@ -92,12 +92,11 @@ app.put("/actores/:id", (req, res) => {
   connection.query(consulta, (error) => {
     if (error) throw error;
     res.json(results);
-
-    //   res.send("Se actualizó la tabla!");
+    res.send("Se actualizó la tabla!");
   });
 });
 
-//connection.end();
+// connection.end();
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
